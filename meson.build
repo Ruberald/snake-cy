@@ -1,7 +1,9 @@
 project('snake', 'c')
 
-sources = (
-  'src/main.c'
+sources = files(
+  'src/main.c',
+  'src/linked_list.c',
+  'src/renderer.c'
   )
 incdir = include_directories('headers')
 deps = [dependency('ncurses')]
