@@ -1,8 +1,10 @@
 #include "renderer.h"
 #include <curses.h>
+#include <locale.h>
 #include <string.h>
 
 void initializeRenderer(Screen * screen) {
+    setlocale(LC_ALL, "");
     // Initialize the screen
     initscr();
 
@@ -37,10 +39,29 @@ void renderTitle(WINDOW *win, const char *title) {
     wrefresh(win);
 }
 
-void renderFrame(WINDOW *win) {
+void draw_call(WINDOW * win, char * str, int x, int y) {
+    wmove(win, y, x);
+    waddstr(win, str);
+}
+
+void renderFrame(WINDOW *win, void (* draw)(WINDOW * win, void (* draw_call)(WINDOW * win, char * str, int x, int y))) {
+    wclear(win);
+    box(win, 0 , 0);
+    renderTitle(win, "Snake Game!");
     // Placeholder for frame rendering logic
     // You can add your frame rendering logic here
     // For example, drawing the snake or any other game elements
+    // wmove(win, 10, (getmaxx(win) - 1) / 2);
+    // waddstr(win, "◊");
+    // wmove(win, 11, (getmaxx(win) - 1) / 2);
+    // waddstr(win, "▮");
+    // wmove(win, 12, (getmaxx(win) - 1) / 2);
+    // waddstr(win, "▮");
+    // wmove(win, 13, (getmaxx(win) - 1) / 2);
+    // waddstr(win, "▮");
+    // wmove(win, 14, (getmaxx(win) - 1) / 2);
+    // waddstr(win, "▾");
+    draw(win, draw_call);
     wrefresh(win);
 }
 

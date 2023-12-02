@@ -18,15 +18,17 @@ typedef struct LinkedList {
     int length;
 } * LinkedList; 
 
-LinkedList init_list();
+LinkedList create_list();
 
-Node init_node(int value);
+Node create_node(int value);
 
 int getAt(LinkedList list, int index);
 
 void append(LinkedList list, int value);
 
 void prepend(LinkedList list, int value);
+
+void update(LinkedList list, int oldValue, int newValue);
 
 void insertAt(LinkedList list, int index, int value);
 

@@ -66,6 +66,15 @@ void prepend(LinkedList list, int value) {
     list->head = node;
 }
 
+void update(LinkedList list, int oldValue, int newValue) {
+    for(Node current = list->head; current != NULL; current = current->next) {
+        if(current->value == oldValue) {
+            current->value = newValue;
+            return;
+        }
+    }
+}
+
 void insertAt(LinkedList list, int index, int value) {
     Node current = list->head;
 
